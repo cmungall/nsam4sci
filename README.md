@@ -79,6 +79,13 @@ Interactive Jupyter notebooks with embedded output and plots:
 - [05 - Decay Chain](https://cmungall.github.io/trusty-neurocoder/notebooks/05_decay_chain/)
 - [06 - Battery Degradation](https://cmungall.github.io/trusty-neurocoder/notebooks/06_battery_degradation/)
 - [07 - Chemical Kinetics](https://cmungall.github.io/trusty-neurocoder/notebooks/07_chemical_kinetics/)
+- [08 - EcoSIM Kernel Case Study](https://cmungall.github.io/trusty-neurocoder/notebooks/08_ecosim_kernel_case_study/)
+- [09 - PFLOTRAN Relative Permeability](https://cmungall.github.io/trusty-neurocoder/notebooks/09_pflotran_relative_permeability/)
+- [10 - Methionine Cycle](https://cmungall.github.io/trusty-neurocoder/notebooks/10_methionine_cycle/)
+- [11 - Regulated Steady State](https://cmungall.github.io/trusty-neurocoder/notebooks/11_regulated_steady_state/)
+- [12 - Methionine Steady-State Fit](https://cmungall.github.io/trusty-neurocoder/notebooks/12_methionine_steady_state_fit/)
+- [13 - Methionine Bayesian UQ](https://cmungall.github.io/trusty-neurocoder/notebooks/13_methionine_bayesian_uq/)
+- [14 - CBS MWC: Laplace vs HMC](https://cmungall.github.io/trusty-neurocoder/notebooks/14_cbs_mwc_laplace_vs_hmc/)
 
 ## Cajal Type System
 
