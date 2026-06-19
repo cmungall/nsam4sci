@@ -82,6 +82,7 @@ Interactive Jupyter notebooks with embedded output and plots:
 - [08 - EcoSIM Kernel Case Study](https://cmungall.github.io/trusty-neurocoder/notebooks/08_ecosim_kernel_case_study/)
 - [09 - PFLOTRAN Relative Permeability](https://cmungall.github.io/trusty-neurocoder/notebooks/09_pflotran_relative_permeability/)
 - [10 - Methionine Cycle](https://cmungall.github.io/trusty-neurocoder/notebooks/10_methionine_cycle/)
+- [11 - Regulated Steady State](https://cmungall.github.io/trusty-neurocoder/notebooks/11_regulated_steady_state/)
 
 ## Cajal Type System
 

@@ -38,6 +38,7 @@ declarative representations NSAMs require.
 | [08 - EcoSIM Kernel Case Study](notebooks/08_ecosim_kernel_case_study.ipynb) | Soil-carbon decomposition kernel extracted from EcoSIM Fortran |
 | [09 - PFLOTRAN Relative Permeability](notebooks/09_pflotran_relative_permeability.ipynb) | Subsurface-flow constitutive relation as a structured surrogate |
 | [10 - Methionine Cycle](notebooks/10_methionine_cycle.ipynb) | Regulated metabolic cycle (DTU Biosustain model); keeps stoichiometry exact, recovers SAM→CBS allosteric Hill activation, conservation to 1e-7 |
+| [11 - Regulated Steady State](notebooks/11_regulated_steady_state.ipynb) | Amortizes the regulated steady-state solve; exact moiety reduction (left null space of S), scales to 128 metabolites, ~95x surrogate speedup with conservation guaranteed |
 
 ## Quick Start
 
