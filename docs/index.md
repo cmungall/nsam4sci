@@ -40,6 +40,7 @@ declarative representations NSAMs require.
 | [10 - Methionine Cycle](notebooks/10_methionine_cycle.ipynb) | Regulated metabolic cycle (DTU Biosustain model); keeps stoichiometry exact, recovers SAM→CBS allosteric Hill activation, conservation to 1e-7 |
 | [11 - Regulated Steady State](notebooks/11_regulated_steady_state.ipynb) | Amortizes the regulated steady-state solve; exact moiety reduction (left null space of S), scales to 128 metabolites, ~95x surrogate speedup with conservation guaranteed |
 | [12 - Methionine Steady-State Fit](notebooks/12_methionine_steady_state_fit.ipynb) | Real methionine+folate network; finds the folate moiety from S's null space; differentiates through the steady state (implicit function theorem) to fit SAM→CBS / SAM→MTHFR allosteric constants from steady-state data |
+| [13 - Methionine Bayesian UQ](notebooks/13_methionine_bayesian_uq.ipynb) | Bayesian calibration with uncertainty, priors anchored to the real Maud methionine model; Gauss–Newton Laplace posterior surfaces the amp/Ka identifiability ridge (corr 0.99) that the point fit hid |
 
 ## Quick Start
 

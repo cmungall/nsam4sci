@@ -54,3 +54,4 @@ nav:
       - "10 - Methionine Cycle": notebooks/10_methionine_cycle.ipynb
       - "11 - Regulated Steady State": notebooks/11_regulated_steady_state.ipynb
       - "12 - Methionine Steady-State Fit": notebooks/12_methionine_steady_state_fit.ipynb
+      - "13 - Methionine Bayesian UQ": notebooks/13_methionine_bayesian_uq.ipynb

@@ -84,6 +84,7 @@ Interactive Jupyter notebooks with embedded output and plots:
 - [10 - Methionine Cycle](https://cmungall.github.io/trusty-neurocoder/notebooks/10_methionine_cycle/)
 - [11 - Regulated Steady State](https://cmungall.github.io/trusty-neurocoder/notebooks/11_regulated_steady_state/)
 - [12 - Methionine Steady-State Fit](https://cmungall.github.io/trusty-neurocoder/notebooks/12_methionine_steady_state_fit/)
+- [13 - Methionine Bayesian UQ](https://cmungall.github.io/trusty-neurocoder/notebooks/13_methionine_bayesian_uq/)
 
 ## Cajal Type System
 
