@@ -51,3 +51,4 @@ nav:
       - "07 - Chemical Kinetics": notebooks/07_chemical_kinetics.ipynb
       - "08 - EcoSIM Kernel Case Study": notebooks/08_ecosim_kernel_case_study.ipynb
       - "09 - PFLOTRAN Relative Permeability": notebooks/09_pflotran_relative_permeability.ipynb
+      - "10 - Methionine Cycle": notebooks/10_methionine_cycle.ipynb

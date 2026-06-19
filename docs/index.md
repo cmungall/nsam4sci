@@ -35,6 +35,9 @@ declarative representations NSAMs require.
 | [05 - Decay Chain](notebooks/05_decay_chain.ipynb) | 4-isotope radioactive decay chain; learns unknown branching ratios exactly |
 | [06 - Battery Degradation](notebooks/06_battery_degradation.ipynb) | SEI growth + capacity fade; recovers parabolic growth law via symbolic regression |
 | [07 - Chemical Kinetics](notebooks/07_chemical_kinetics.ipynb) | Reversible reaction A⇌B; recovers Arrhenius rate k=2.0·exp(-5.0/T) from equilibrium data |
+| [08 - EcoSIM Kernel Case Study](notebooks/08_ecosim_kernel_case_study.ipynb) | Soil-carbon decomposition kernel extracted from EcoSIM Fortran |
+| [09 - PFLOTRAN Relative Permeability](notebooks/09_pflotran_relative_permeability.ipynb) | Subsurface-flow constitutive relation as a structured surrogate |
+| [10 - Methionine Cycle](notebooks/10_methionine_cycle.ipynb) | Regulated metabolic cycle (DTU Biosustain model); keeps stoichiometry exact, recovers SAM→CBS allosteric Hill activation, conservation to 1e-7 |
 
 ## Quick Start
 
