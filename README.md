@@ -86,6 +86,7 @@ Interactive Jupyter notebooks with embedded output and plots:
 - [12 - Methionine Steady-State Fit](https://cmungall.github.io/trusty-neurocoder/notebooks/12_methionine_steady_state_fit/)
 - [13 - Methionine Bayesian UQ](https://cmungall.github.io/trusty-neurocoder/notebooks/13_methionine_bayesian_uq/)
 - [14 - CBS MWC: Laplace vs HMC](https://cmungall.github.io/trusty-neurocoder/notebooks/14_cbs_mwc_laplace_vs_hmc/)
+- [15 - Alzheimer's Aβ–Tau Core](https://cmungall.github.io/trusty-neurocoder/notebooks/15_alzheimers_abeta_tau/)
 
 ## Cajal Type System
 

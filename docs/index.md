@@ -42,6 +42,7 @@ declarative representations NSAMs require.
 | [12 - Methionine Steady-State Fit](notebooks/12_methionine_steady_state_fit.ipynb) | Real methionine+folate network; finds the folate moiety from S's null space; differentiates through the steady state (implicit function theorem) to fit SAM→CBS / SAM→MTHFR allosteric constants from steady-state data |
 | [13 - Methionine Bayesian UQ](notebooks/13_methionine_bayesian_uq.ipynb) | Bayesian calibration with uncertainty, priors anchored to the real Maud methionine model; Gauss–Newton Laplace posterior surfaces the amp/Ka identifiability ridge (corr 0.99) that the point fit hid |
 | [14 - CBS MWC: Laplace vs HMC](notebooks/14_cbs_mwc_laplace_vs_hmc.ipynb) | Faithful single-enzyme port (real Maud MWC rate law + priors, mM units); Laplace matches exact grid and HMC on informative data, and visibly misses the skewed L tail on data-poor designs |
+| [15 - Alzheimer's Aβ–Tau Core](notebooks/15_alzheimers_abeta_tau.ipynb) | Compiles an SBML/Antimony-style AD reaction model (Aβ aggregation + tau phosphorylation) to a Cajal program; recovers the hidden amyloid→tau hyperphosphorylation coupling as Michaelis–Menten with both conservation laws (total Aβ, total tau) exact by construction |
 
 ## Quick Start
 
