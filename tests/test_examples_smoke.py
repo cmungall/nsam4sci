@@ -154,3 +154,88 @@ class TestChemicalKinetics:
                 result = compiled_iter({"s0": s0, "f": step, "n": TypedTensor(n_oh, TyNat())})
                 total = result.data[0].item() + result.data[1].item()
                 assert abs(total - 1.0) < 1e-6, f"Mass not conserved at step {i}: {total}"
+
+
+class TestAlzheimersAbetaTau:
+    """Reduced Aβ–tau core: two conservation laws and a learnable amyloid->tau coupling."""
+
+    K_AGG, K_DIS, K_DEPHOS, DT = 0.40, 0.05, 0.10, 0.3
+    K_BASE, VMAX, KM = 0.02, 0.50, 0.50
+    N_STEPS = 10
+
+    def _true_k_phos(self, Ap):
+        return self.K_BASE + self.VMAX * Ap / (self.KM + Ap)
+
+    def test_dual_conservation(self, compiled_iter):
+        """Am+Ap and Tau+pTau are each conserved by construction (any k_phos)."""
+        mlp = nn.Sequential(nn.Linear(1, 8), nn.Tanh(), nn.Linear(8, 1), nn.Softplus())
+
+        def step(state):
+            Am, Ap, Tau, pTau = (state.data[i] for i in range(4))
+            flux_agg = self.K_AGG * Am - self.K_DIS * Ap
+            flux_phos = mlp(Ap.view(1, 1)).squeeze() * Tau - self.K_DEPHOS * pTau
+            return TypedTensor(torch.stack([
+                Am - flux_agg * self.DT, Ap + flux_agg * self.DT,
+                Tau - flux_phos * self.DT, pTau + flux_phos * self.DT]), state.ty)
+
+        s0 = TypedTensor(torch.tensor([1.5, 0.0, 1.0, 0.0]), TyReal(4))
+        with torch.no_grad():
+            for i in range(self.N_STEPS):
+                n_oh = torch.zeros(self.N_STEPS)
+                n_oh[i] = 1.0
+                r = compiled_iter({"s0": s0, "f": step, "n": TypedTensor(n_oh, TyNat())})
+                assert abs((r.data[0] + r.data[1]).item() - 1.5) < 1e-6
+                assert abs((r.data[2] + r.data[3]).item() - 1.0) < 1e-6
+
+    def test_recovers_saturating_coupling(self, compiled_iter):
+        """Train the coupling on tau dynamics; recover a saturating k_phos(Ap)."""
+        torch.manual_seed(0)
+        loads = [0.4, 1.0, 1.8]
+
+        def true_step(s):
+            Am, Ap, Tau, pTau = s
+            fa = self.K_AGG * Am - self.K_DIS * Ap
+            fp = self._true_k_phos(Ap) * Tau - self.K_DEPHOS * pTau
+            return [Am - fa * self.DT, Ap + fa * self.DT,
+                    Tau - fp * self.DT, pTau + fp * self.DT]
+
+        data = []
+        for load in loads:
+            s, curve = [load, 0.0, 1.0, 0.0], []
+            for _ in range(self.N_STEPS):
+                curve.append(list(s)); s = true_step(s)
+            data.append(curve)
+
+        mlp = nn.Sequential(nn.Linear(1, 16), nn.Tanh(), nn.Linear(16, 1), nn.Softplus())
+        opt = torch.optim.Adam(mlp.parameters(), lr=0.01)
+
+        def step(state):
+            Am, Ap, Tau, pTau = (state.data[i] for i in range(4))
+            fa = self.K_AGG * Am - self.K_DIS * Ap
+            fp = mlp(Ap.view(1, 1)).squeeze() * Tau - self.K_DEPHOS * pTau
+            return TypedTensor(torch.stack([
+                Am - fa * self.DT, Ap + fa * self.DT,
+                Tau - fp * self.DT, pTau + fp * self.DT]), state.ty)
+
+        for _ in range(150):
+            opt.zero_grad()
+            loss = torch.tensor(0.0)
+            for li, load in enumerate(loads):
+                s0 = TypedTensor(torch.tensor([load, 0.0, 1.0, 0.0]), TyReal(4))
+                for i in range(self.N_STEPS):
+                    n_oh = torch.zeros(self.N_STEPS); n_oh[i] = 1.0
+                    r = compiled_iter({"s0": s0, "f": step, "n": TypedTensor(n_oh, TyNat())})
+                    loss = loss + (r.data[3] - data[li][i][3]) ** 2
+            loss.backward(); opt.step()
+
+        # Evaluate only within the observed plaque range (Ap up to ~1.2).
+        with torch.no_grad():
+            k = {a: mlp(torch.tensor([a]).view(1, 1)).squeeze().item()
+                 for a in (0.2, 0.6, 1.0)}
+        # increasing in plaque load
+        assert k[1.0] > k[0.2]
+        # saturating: stays below the Michaelis-Menten asymptote (k_base + Vmax)
+        assert k[1.0] < self.K_BASE + self.VMAX
+        # accurate against the hidden ground truth at well-observed points
+        assert abs(k[0.6] - self._true_k_phos(torch.tensor(0.6)).item()) < 0.1
+        assert abs(k[1.0] - self._true_k_phos(torch.tensor(1.0)).item()) < 0.1
