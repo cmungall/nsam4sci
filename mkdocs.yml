@@ -35,6 +35,8 @@ extra_javascript:
 
 nav:
   - Home: index.md
+  - Proposal Abstract: proposal-abstract.md
+  - Proposal PDF: proposal.pdf
   - Paper Draft: paper/draft.md
   - Slides: slides/index.md
   - Agent Workflow: agent-workflow.md
